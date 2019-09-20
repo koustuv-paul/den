@@ -1,0 +1,45 @@
+Given an array of jobs with different time requirements. There are K identical processor available and we are also given how much time an processor takes to do one unit of the job. Find the minimum time to finish all jobs with following constraints.
+1. An assignee can be assigned only contiguous jobs. For example, an assignee cannot be assigned jobs 1 and 3, but not 2.(FIFO)
+2. Two processor cannot share (or co-assigned) a job, i.e., a job cannot be partially assigned to one assignee and partially to other.
+
+K:     Number of assignees available.
+T:     Time taken by an assignee to finish one unit 
+       of job
+job[]: An array that represents time requirements of 
+       different jobs.
+	   
+Examples -
+
+Example 1 :
+
+Input:  k = 2, T = 5, job[] = {4, 5, 10}
+Output: 50
+The minimum time required to finish all the jobs is 50.
+There are 2 assignees available. We get this time by 
+assigning {4, 5} to first assignee and {10} to second 
+assignee.
+
+Example 2 :
+Input:  k = 4, T = 5, job[] = {10, 7, 8, 12, 6, 8}
+Output: 75
+We get this time by assigning {10} {7, 8} {12} and {6, 8}
+
+Algo:
+
+prcessor[jobs] //array of all executing jobs
+int pIndex =0; // current processor
+int lastMaxJob = 0; // last know max job
+while(jobs){
+	processor[pIndex]=job;
+	if(lastMaxJob > sum(processor[pIndex])){
+		//assign next job to same processor
+	}else{
+		lastMaxJob = sum(processor[pIndex])
+		pIndex++;// assign next job to next processor
+	}
+	if(pIndex == count(processor) -1 ){
+		pIndex = 0; // when all processors are done start from first processor again.
+	}
+	jobs --;
+}
+return lastMaxJob;// max time by spent by the system for all jobs.
