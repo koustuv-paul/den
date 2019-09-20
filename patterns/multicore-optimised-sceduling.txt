@@ -1,0 +1,39 @@
+Design a multicore processor which can complete job in least minimum time.
+
+c = number of cores
+tt[] = Time taken by tasks 
+Example -
+
+c = 3 , tt = [10,2,1,3,5]
+
+Output:
+
+c1 : 10 
+c2 : 5,3,2
+c3 : 1
+
+Optimal time = 10;
+
+
+
+Algo: (nlogn + n  = nlogn)
+
+sort(tt) //nlogn
+cIndex=0;
+c[]//tasks in each cpu
+int maxT //current biggest task
+for(task : tt)//descending //n
+{
+		if(ifTaskAddedToCurrentWillItBeGreaterThanMax && (cIndex < c.length -1) ){
+			cIndex++;
+		}
+		c[cIndex].execute(task);
+		c[cIndex] += task;
+		if(sum(c[cIndex]) < maxT)
+			continue;
+		maxT = sum(c[cIndex]);
+		cIndex++;
+		if(cIndex == c.length -1)
+			cIndex =0;
+	
+}
