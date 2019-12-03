@@ -2,7 +2,19 @@ import sys
 import requests
 from bs4 import BeautifulSoup
 
-Base_url = "https://www.nseindia.com/live_market/dynaContent/live_watch/option_chain/optionKeys.jsp?segmentLink=17&instrument=OPTSTK&symbol="+ sys.argv[1]+"&date=26DEC2019"
+stock=sys.argv[1]
+
+
+if 1 == sys.argv[2]:
+	type = "OPTSTK"
+else:
+	type = "OPTIDX"
+	
+expiry = sys.argv[3]
+
+
+	
+Base_url = "https://www.nseindia.com/live_market/dynaContent/live_watch/option_chain/optionKeys.jsp?segmentLink=17&instrument="+ type +"&symbol="+ sys.argv[1]+"&date="+expiry
 
 print(Base_url)
 page = requests.get(Base_url)
