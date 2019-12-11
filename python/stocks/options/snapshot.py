@@ -15,7 +15,9 @@ class FetchOtion():
     
     def getOption(self,Type,symbol,expiry):
         url="https://www.nseindia.com/live_market/dynaContent/live_watch/option_chain/optionKeys.jsp?segmentLink=17&instrument="+str(Type)+"&symbol="+str(symbol)+"&date="+expiry
-        page = requests.get(url)
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36'}
+        print(url)
+        page = requests.get(url, headers=headers)
         soup = BeautifulSoup(page.content, 'html.parser')
         table_cls_2 = soup.find(id="octable")
         req_row = table_cls_2.find_all('tr')
@@ -37,7 +39,7 @@ class FetchOtion():
             print(line)
             each_line.append(line)
         name = self.getFileName()
-        name="D:/Data/stocks/options/snapshot/"
+        name="D:/Data/stocks/options/snapshot/"+symbol+"/"
         print(os.path.exists(name))
         if not os.path.exists(name):
             os.makedirs(name)
@@ -48,5 +50,6 @@ class FetchOtion():
             f.write("\n")
 options = FetchOtion()
 while 1==1:
-    options.getOption("OPTSTK","L%26TFH","26DEC2019")
-    time.sleep(3)
+	options.getOption("OPTIDX","BANKNIFTY","26DEC2019")
+	time.sleep(180)
+    
