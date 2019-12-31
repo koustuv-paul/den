@@ -51,5 +51,5 @@ class FetchOtion():
 options = FetchOtion()
 while 1==1:
 	options.getOption("OPTIDX","BANKNIFTY","26DEC2019")
-	time.sleep(180)
+	time.sleep(60)
     
